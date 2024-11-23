@@ -1,0 +1,12 @@
+tools
+ht track
+httrack "http://example.com" -O ~/example-site --mirror --depth=3
+
+wget 
+wget --mirror --convert-links --adjust-extension --page-requisites --no-parent -e robots=off -P ~/namafolder https://murianews.com/
+
+
+httrack
+httrack "https://murianews.com" -O ~/namafolder --mirror --depth=2 --robots=0
+
+
