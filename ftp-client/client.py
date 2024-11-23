@@ -4,7 +4,7 @@ import os
 # Konfigurasi client
 SERVER_HOST = "127.0.0.1"
 SERVER_PORT = 2121
-BUFFER_SIZE = 8192
+BUFFER_SIZE = 1024
 
 def print_menu():
     """Display menu options to the user."""
@@ -16,7 +16,6 @@ def print_menu():
     print("5. Remove directory on server")
     print("6. Quit")
     print("=======================\n")
-
 
 def start_client():
     # Membuat socket klien
@@ -66,8 +65,8 @@ def start_client():
                     response = client_socket.recv(BUFFER_SIZE).decode()
                     if response == "READY":
                         # Buat folder downloads jika belum ada
-                        os.makedirs("ftp-client/downloads", exist_ok=True)  
-                        save_path = os.path.join("ftp-client", "downloads", filename)  # Pastikan path benar
+                        os.makedirs("downloads", exist_ok=True)  
+                        save_path = os.path.join("downloads", filename)
                         with open(save_path, "wb") as f:
                             while True:
                                 data = client_socket.recv(BUFFER_SIZE)
@@ -110,7 +109,6 @@ def start_client():
     finally:
         client_socket.close()
         print("[DISCONNECTED] Client closed connection.")
-
 
 if __name__ == "__main__":
     start_client()
